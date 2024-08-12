@@ -1,6 +1,6 @@
 # scraper
 
-TODO: Write a description here
+[EXPERIMENTAL] Pequeño proyecto para aprender Crystal en el que trato de desarrollar un Scraper que toma Robots.txt, Sitemaps y obtiene las definiciones Schema.org de las páginas.
 
 ## Installation
 

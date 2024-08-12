@@ -4,6 +4,13 @@ version: 0.1.0
 authors:
   - Wilson <wtovaragudelo@gmail.com>
 
-crystal: '>= 1.13.1'
+crystal: ">= 1.13.1"
 
 license: MIT
+
+dependencies:
+  db:
+    github: crystal-lang/crystal-db
+
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
