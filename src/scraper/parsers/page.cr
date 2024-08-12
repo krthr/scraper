@@ -1,3 +1,4 @@
+require "json"
 require "log"
 require "xml"
 
@@ -7,7 +8,7 @@ require "../utils/http"
 struct Parsers::Page
   Log = ::Log.for(self)
 
-  getter definitions = [] of String
+  getter definitions = [] of JSON::Any
 
   def initialize; end
 
@@ -19,7 +20,11 @@ struct Parsers::Page
     html
       .xpath_nodes("//script[@type='application/ld+json']")
       .each do |node|
-        @definitions << node.text
+        begin
+          @definitions << JSON.parse(node.text)
+        rescue exception
+          Log.error { exception }
+        end
 
         # begin
         #   json = JSON.parse(text)

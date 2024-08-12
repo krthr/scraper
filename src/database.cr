@@ -5,6 +5,13 @@ require "db"
 require "sqlite3"
 require "json"
 
+module DefinitionsConverter
+  def self.from_rs(rs : DB::ResultSet) : Array(JSON::Any)
+    str = rs.read(String)
+    Array(JSON::Any).from_json(str)
+  end
+end
+
 class Database
   @@db : DB::Database?
 
@@ -72,10 +79,13 @@ class Database
 
   class Page
     include DB::Serializable
+    include JSON::Serializable
 
     property id : Int64
     property url : String
-    property definitions : String
+
+    @[DB::Field(converter: DefinitionsConverter)]
+    property definitions : Array(JSON::Any)
   end
 
   class Url
