@@ -8,6 +8,10 @@ crystal: ">= 1.13.1"
 
 license: MIT
 
+targets:
+  api:
+    main: src/api.cr
+
 dependencies:
   db:
     github: crystal-lang/crystal-db
