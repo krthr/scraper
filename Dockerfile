@@ -1,4 +1,4 @@
-FROM crystallang/crystal:latest as builder
+FROM --platform=arm64 crystallang/crystal:latest as builder
 
 WORKDIR /build
 RUN apt update && apt upgrade -y
@@ -7,7 +7,7 @@ COPY . .
 RUN shards install
 RUN shards build api --static
 
-FROM crystallang/crystal:latest
+FROM --platform=arm64 crystallang/crystal:latest
 
 WORKDIR /app
 COPY --from=builder /build/bin/api /app/api 
